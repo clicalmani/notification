@@ -16,7 +16,7 @@ final class EmailChannel implements NotificationChannelInterface
         return 'mail'; 
     }
 
-    public static function priority(): int
+    public function priority(): int
     {
         return 50;
     }

@@ -34,7 +34,7 @@ interface NotificationChannelInterface
      *
      * @return int
      */
-    public static function priority(): int;
+    public function priority(): int;
 
     /**
      * Determines whether the channel should execute for the given context.

@@ -8,10 +8,10 @@ use Clicalmani\Notification\Events\{
     NotificationFailed,
     NotificationSkipped,
 };
-use Clicalmani\Notification\Queue\Contracts\ShouldQueue;
-use Clicalmani\Notification\Queue\Events\JobPushed;
-use Clicalmani\Notification\Queue\NotificationJob;
+use Clicalmani\Queue\NotificationJob;
 use Clicalmani\Notification\Support\Facades\Queue;
+use Clicalmani\Queue\Contracts\ShouldQueue;
+use Clicalmani\Queue\Events\JobPushed;
 use Throwable;
 
 /**
@@ -60,7 +60,7 @@ final class NotificationDispatcher
         $availableRoutes = method_exists($notifiable, 'routes')
             ? array_keys($notifiable->routes())
             : null;
-
+        
         foreach (ChannelRegistry::sorted() as $channelName =>$channel) {
             if (! $context->hasChannel($channelName)) {
                 continue;

@@ -51,7 +51,7 @@ final class LazyChannelProxy implements NotificationChannelInterface
      *
      * @return int Defaults to 0 prior to dynamic resolution.
      */
-    public static function priority(): int
+    public function priority(): int
     {
         return 0;
     }

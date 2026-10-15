@@ -49,7 +49,7 @@ final class ChannelRegistry
         }
 
         $key = $name ?? $instance::name();
-
+        
         if ($key === '') {
             throw new RuntimeException(
                 'Cannot register a channel without a name. Pass $name explicitly for proxies.'
@@ -67,8 +67,9 @@ final class ChannelRegistry
      */
     public static function registerMany(array $channels): void
     {
-        foreach ($channels as $channel) {
-            self::register($channel);
+        foreach ($channels as $key => $channel) {
+            $name = is_string($key) ? $key : null;
+            self::register($channel, $name);
         }
     }
 
@@ -130,8 +131,8 @@ final class ChannelRegistry
         $channels = self::$channels;
 
         uasort($channels, function ($a, $b) {
-            $pa = $a instanceof LazyChannelProxy ? $a->priorityValue() : $a::priority();
-            $pb = $b instanceof LazyChannelProxy ? $b->priorityValue() : $b::priority();
+            $pa = $a instanceof LazyChannelProxy ? $a->priorityValue() : $a->priority();
+            $pb = $b instanceof LazyChannelProxy ? $b->priorityValue() : $b->priority();
 
             return $pb <=> $pa;
         });

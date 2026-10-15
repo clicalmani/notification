@@ -43,8 +43,9 @@ final class NotificationManager
      */
     public function channel(string|array $channels): self
     {
-        foreach ((array) $channels as $channel) {
-            $this->registry::register($channel);
+        foreach ((array) $channels as $key => $channel) {
+            $name = is_string($key) ? $key : null;
+            $this->registry::register($channel, $name);
         }
 
         return $this;

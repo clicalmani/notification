@@ -52,7 +52,7 @@ final class NotificationContext
             table:     method_exists($notifiable, 'getTable')
                             ? $notifiable->getTable()
                             : strtolower($shortName) . 's',
-            id:        method_exists($notifiable, 'id') && $notifiable->id !== null
+            id:        isset($notifiable->id)
                             ? $notifiable->id
                             : (method_exists($notifiable, 'id') ? $notifiable->id() : spl_object_id($notifiable)),
             className: $className,

@@ -20,7 +20,7 @@ trait DefaultChannelBehavior
      *
      * @return int Default priority value set to 0.
      */
-    public static function priority(): int
+    public function priority(): int
     {
         return 0;
     }

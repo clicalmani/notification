@@ -36,7 +36,7 @@ final class BroadcastChannel implements NotificationChannelInterface
      *
      * @return int
      */
-    public static function priority(): int
+    public function priority(): int
     {
         return 10;
     }
